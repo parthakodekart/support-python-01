@@ -45,7 +45,7 @@ for i in data:
     tariffTypeDict[i[2]] = i[0]
 print(tariffTypeDict)
 
-mydb.execute("  select * from NXLCalcType")
+mydb.execute("select * from NXLCalcType")
 data = mydb.fetchall()
 calcTypeDict = {}
 for i in data:
@@ -67,11 +67,13 @@ for i in range(len(y)):
     ActiveDa
     # print(TariffChargeType)
 
-    CalcType = calcTypeDict.get(y[i]['chargeType'])  # CON
+    CalcType = calcTypeDict.get(y[i]['chargeType'])  # CON # MATCH WITH VALUE
+
+    # getting rate sequence and max rate amount
     rate_band = y[i]['rateBands']
     rateAmount = rate_band[0]['rateAmount']
     if len(rate_band) > 1:
-        rateSequenceNumber = 1
+        rateSequenceNumber = 1  # Unused
 
         for rs in rate_band:
             if rs['rateSequenceNumber'] > rateSequenceNumber:
@@ -90,7 +92,8 @@ for i in range(len(y)):
         if not tou:
             TOU = 7  # 'All'
         else:
-            TOU = touDict[y[i]['timeOfUse']['touType']]  # CON
+            # CON  # MATCH WITH VALUE
+            TOU = touDict[y[i]['timeOfUse']['touType']]
 
     hasDemandLimit = y[i]['rateBands'][0]['hasDemandLimit']
     if not hasDemandLimit:
