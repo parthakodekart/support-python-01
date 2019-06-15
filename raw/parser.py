@@ -101,7 +101,7 @@ for i in range(len(y)):
         LimitEnd = 0
     else:
         LimitStart = y[i]['rateBands'][0]['demandUpperLimit']
-        LimitEnd = 0
+        LimitEnd = 0  # condition independant
 
     Notes = 'null'
     CreatedOn = date
@@ -112,7 +112,7 @@ for i in range(len(y)):
     db_update_data.append(val)
 
 
-query = "INSERT INTO NXRATECHARGES VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+query = "INSERT INTO NXRATECHARGES VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d)"
 
 #val = (100,1,"2014-01-01","2014-06-30",0,6,3,8,0,0,400,'CustomerCharge',"2018-11-12 09:02:19.340","System",1)
 # mydb.execute(query,val)

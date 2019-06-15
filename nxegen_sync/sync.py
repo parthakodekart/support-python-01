@@ -3,6 +3,7 @@ Sync Script which sync the data with given database
 (Synchronous Approach)
 """
 import os
+from datetime import datetime
 import pymssql
 import pandas as pd
 import logging
@@ -107,73 +108,91 @@ class SyncDB:
         """
         pass
 
-    def compute_Rate(self, tarrif=None):
+    def compute_RateAmount(self, rate=None):
         """
-        Will compute the Rate column
+        Will compute the RateAmount
         """
         pass
 
-    def compute_TariffChargeType(self, tarrif=None):
+    def compute_Rate(self, calc_type=None, rate_amount=None):
         """
         Will compute the Rate column
         """
-        pass
+        return 0 if calc_type == 3 else rate_amount
+
+    def compute_TariffChargeType(self, rate=None):
+        """
+        Will compute the Rate column
+        """
+        return self.tarrif_types.loc[self.tarrif_types["<column_name>"] == rate['rateGroupName']]  # need to do to_dict of specified field
 
     def compute_CalcType(self, tarrif=None):
         """
         will compute the tarrif calc type
         """
-        calc_type = self.calc_types.loc[self.calc_types['ChargeType']
+        calc_type = self.calc_types.loc[self.calc_types['<column_name>']
                                         == tarrif['ChargeType']]
         # TODO: Identify the specific field
 
-    def compute_TOU(self, tarrif=None):
+    def compute_TOU(self, calc_type=None, rate=None):
         """
         Will compute the TOU column
         """
-        pass
+        if calc_type == 3:
+            return 8
+        else:
+            _tou = rate.get('timeOfUse', None)
+            if not _tou:
+                return 7  # 'All'
+            else:
+                return self.tou_types.loc[self.tou_types['<column>'] == _tou['touType']]
 
-    def compute_LimitStart(self, tarrif=None):
+    def compute_LimitStart(self, rate=None):
         """
         Will compute the LimitStart column
         """
-        pass
+        has_demand_limit = rate['rateBands'][0]['hasDemandLimit']
+        if not has_demand_limit:
+            limit_start = 0
+        else:
+            limit_start = rate['rateBands'][0]['demandUpperLimit']
+        return limit_start
 
-    def compute_LimitEnd(self, tarrif=None):
+    def compute_LimitEnd(self, rate=None):
         """
         Will compute the LimitEnd column
         """
-        pass
+        return 0
 
-    def compute_Charges(self, tarrif=None):
+    def compute_Charges(self, calc_type=None, rate_amount=None):
         """
         Will compute the Charges column
         """
-        pass
+        return rate_amount if calc_type == 3 else 0
 
     def compute_Notes(self, tarrif=None):
         """
         Will compute the Notes column
         """
-        pass
+        return 'null'
 
     def compute_CreatedOn(self, tarrif=None):
         """
         Will compute the CreatedOn column
         """
-        pass
+        return datetime.now()
 
     def compute_CreatedBy(self, tarrif=None):
         """
         Will compute the CreatedBy column
         """
-        pass
+        return 'system'
 
     def compute_Version(self, tarrif=None):
         """
         Will compute the Version column
         """
-        pass
+        return 1
 
     def run(self):
         """
@@ -193,26 +212,31 @@ class SyncDB:
             tarrif_df = self.get_nxgen_ability_id(tarrif.get('tariffId'))
             # 6. Insert payload into another table
             for rate in tarrif.get('rates', []):
+                rate_amount = self.computeRateAmount(rate)
+                calc_type = self.compute_CalcType(rate)
                 payload = {
-                    'RateID': None,
-                    'UtilityID': None,
                     'ActiveDateFrom': None,
                     'ActiveDateTo': None,
-                    'Rate': None,
-                    'TariffChargeType': None,
-                    'CalcType': None,
-                    'TOU': None,
-                    'LimitStart': None,
-                    'LimitEnd': None,
-                    'Charges': None,
-                    'Notes': None,
-                    'CreatedOn': None,
-                    'CreatedBy': None,
-                    'Version': None
+                    'TariffChargeType': self.compute_TariffChargeType(rate),
+                    'LimitStart': self.compute_LimitStart(rate),
+                    'LimitEnd': self.compute_LimitEnd(rate),
+                    'Notes': self.compute_Notes(),
+                    'CreatedOn': self.compute_CreatedOn(),
+                    'CreatedBy': self.compute_CreatedBy(),
+                    'Version': self.compute_Version(),
+                    'RateID': self.compute_RateID(tarrif_df),
+                    'UtilityID': self.compute_UtilityID(tarrif_df),
+                    'CalcType': calc_type,
+                    'Charges': self.compute_Charges(
+                        calc_type=calc_type,
+                        rate_amount=rate_amount),
+                    'Rate': self.compute_Rate(
+                        calc_type=calc_type,
+                        rate_amount=rate_amount),
+                    'TOU': self.compute_Rate(
+                        calc_type=calc_type,
+                        rate=rate)
                 }
-                payload.update({
-                    'RateID': self.compute_RateID()
-                })
                 # Calculate the payload
                 self.persist_NXRATECHARGES(payload)
 
