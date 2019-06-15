@@ -1,5 +1,6 @@
 """
 Sync Script which sync the data with given database
+(Synchronous Approach)
 """
 import os
 import pymssql
@@ -46,10 +47,11 @@ class SyncDB:
             self.DB_HOST, self.DB_USER, self.DB_PASSWORD, self.DB_NAME)
         self.client = self.connection.cursor()
 
-    def _fetch(self, query):
+    def _fetch(self, query=None):
         """
         internal method to fetch the data and returns dataframe
         """
+        assert query is not None, "query should not be empty"
         df = pd.read_sql(query, self.connection)
         return df
 
@@ -74,8 +76,8 @@ class SyncDB:
         """
         query = "SELECT * from NXLGenabilityRateID where G_MasterTariffID = {}".format(
             tarrif_id)  # TODO: might be sql injection prevention required?
-        self.ability_id = self._fetch(query)
-        return self.ability_id
+        ability_id = self._fetch(query)
+        return ability_id
 
     def get_calculation_types(self):
         """
@@ -177,13 +179,13 @@ class SyncDB:
         """
         Core method to start the process
         """
-        # 1. Get the tarrif details
+        # 1. Get the tarrif details (using API)
         self.get_tarrif_results()
-        # 2. Get tarrif types
+        # 2. Get tarrif types (from db)
         self.get_tarrif_types()
-        # 3. Get calc types
+        # 3. Get calc types (from db)
         self.get_calculation_types()
-        # 4. Get TOU types
+        # 4. Get TOU types (from db)
         self.get_time_of_use_of_types()
         # 5. For each tarrif, prepare payload (which consists the rate changes/tarrif)
         # This is where calculation needs to be done
@@ -208,6 +210,9 @@ class SyncDB:
                     'CreatedBy': None,
                     'Version': None
                 }
+                payload.update({
+                    'RateID': self.compute_RateID()
+                })
                 # Calculate the payload
                 self.persist_NXRATECHARGES(payload)
 
