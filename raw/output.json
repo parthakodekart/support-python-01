@@ -1,0 +1,1081 @@
+{
+	"status": "success",
+	"count": 1,
+	"type": "Tariff",
+	"results": [
+		{
+			"tariffId": 3331357,
+			"masterTariffId": 1702112,
+			"tariffCode": "27",
+			"tariffName": "Small General - Time of Day",
+			"lseId": 2250,
+			"lseName": "Eversource Energy (Formerly Connecticut Light & Power Co)",
+			"priorTariffId": 3323328,
+			"tariffType": "ALTERNATIVE",
+			"customerClass": "GENERAL",
+			"customerCount": 43,
+			"customerLikelihood": None,
+			"territoryId": 2521,
+			"effectiveDate": "2019-05-01",
+			"endDate": None,
+			"timeZone": "US/Eastern",
+			"billingPeriod": "MONTHLY",
+			"currency": "USD",
+			"chargeTypes": "FIXED_PRICE,CONSUMPTION_BASED,DEMAND_BASED,MINIMUM",
+			"chargePeriod": "MONTHLY",
+			"hasTimeOfUseRates": True,
+			"hasTieredRates": True,
+			"hasContractedRates": True,
+			"hasRateApplicability": True,
+			"isActive": True,
+			"properties": [
+				{
+					"keyName": "demand",
+					"quantityKey": None,
+					"displayName": "Demand (kW)",
+					"family": "load",
+					"keyspace": "electricity",
+					"description": "Quantity in kW of load that is used for a given period",
+					"dataType": "DEMAND",
+					"propertyTypes": "APPLICABILITY",
+					"operator": "<",
+					"propertyValue": "350",
+					"maxValue": 350.0,
+					"isDefault": False
+				},
+				{
+					"keyName": "consumption",
+					"quantityKey": None,
+					"period": "OFF_PEAK",
+					"displayName": "Consumption (kWh)",
+					"family": "load",
+					"keyspace": "electricity",
+					"description": "Quantity in kWh of load that is used for a period of time",
+					"dataType": "DECIMAL",
+					"propertyTypes": "RATE_CRITERIA",
+					"operator": None,
+					"isDefault": False
+				},
+				{
+					"keyName": "consumption",
+					"quantityKey": None,
+					"period": "ON_PEAK",
+					"displayName": "Consumption (kWh)",
+					"family": "load",
+					"keyspace": "electricity",
+					"description": "Quantity in kWh of load that is used for a period of time",
+					"dataType": "DECIMAL",
+					"propertyTypes": "RATE_CRITERIA",
+					"operator": None,
+					"isDefault": False
+				},
+				{
+					"keyName": "demand",
+					"quantityKey": "billingDemand2250",
+					"displayName": "Billing Demand",
+					"family": "peakDemand",
+					"keyspace": "electricity",
+					"description": "The peak 30 minute interval during the previous month.",
+					"dataType": "DEMAND",
+					"propertyTypes": "RATE_CRITERIA",
+					"operator": None,
+					"isDefault": False
+				},
+				{
+					"keyName": "facilitiesOwnership",
+					"quantityKey": None,
+					"displayName": "Has Facilities Owned and Maintained",
+					"family": "specifications",
+					"keyspace": "building",
+					"description":
+						"Customer has facilities owned and maintained all electric distribution equipment, except the metering equipment?",
+					"dataType": "BOOLEAN",
+					"propertyTypes": "RATE_CRITERIA",
+					"operator": "=",
+					"propertyValue": "false",
+					"isDefault": True
+				},
+				{
+					"keyName": "chargeClass",
+					"quantityKey": None,
+					"displayName": "Charge Class Type",
+					"family": "service",
+					"keyspace": "electricity",
+					"description": "The tariff has rates with the following charge class.",
+					"dataType": "CHOICE",
+					"propertyTypes": "SERVICE_TERMS",
+					"operator": "=",
+					"propertyValue": "SUPPLY, CONTRACTED, TRANSMISSION, DISTRIBUTION",
+					"choices": [
+						{ "displayValue": "Transmission", "value": "1", "dataValue": "1", "likelihood": None },
+						{ "displayValue": "Distribution", "value": "2", "dataValue": "2", "likelihood": None },
+						{ "displayValue": "Supply", "value": "4", "dataValue": "4", "likelihood": None },
+						{ "displayValue": "Tax", "value": "8", "dataValue": "8", "likelihood": None },
+						{ "displayValue": "Other", "value": "16", "dataValue": "16", "likelihood": None },
+						{ "displayValue": "Contracted", "value": "32", "dataValue": "32", "likelihood": None }
+					],
+					"isDefault": False
+				}
+			],
+			"rates": [
+				{
+					"tariffRateId": 18366635,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 6,
+					"rateGroupName": "Distribution Service Charge",
+					"rateName": "Customer Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "FIXED_PRICE",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338829,
+							"tariffRateId": 18366635,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 44.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366636,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 7,
+					"rateGroupName": "Electric System Improvements",
+					"rateName": "Electric System Improvements",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "DEMAND_BASED",
+					"chargePeriod": "MONTHLY",
+					"quantityKey": "billingDemand2250",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338830,
+							"tariffRateId": 18366636,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.32,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366637,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 8,
+					"rateGroupName": "Revenue Adjustment Mechanism",
+					"rateName": "Revenue Adjustment Mechanism",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338831,
+							"tariffRateId": 18366637,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.00181,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366638,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 9,
+					"rateGroupName": "Renewable Energy Charge",
+					"rateName": "Renewable Energy Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338832,
+							"tariffRateId": 18366638,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.001,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366639,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 10,
+					"rateGroupName": "Transmission Service Charge",
+					"rateName": "Demand Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "DEMAND_BASED",
+					"chargeClass": "TRANSMISSION",
+					"chargePeriod": "MONTHLY",
+					"quantityKey": "billingDemand2250",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338833,
+							"tariffRateId": 18366639,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": True,
+							"demandUpperLimit": 2.0,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						},
+						{
+							"tariffRateBandId": 12338834,
+							"tariffRateId": 18366639,
+							"rateSequenceNumber": 2,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": True,
+							"hasPropertyLimit": False,
+							"rateAmount": 3.52,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366640,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 11,
+					"rateGroupName": "FMCC Generation Charge",
+					"rateName": "FMCC Generation Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "SUPPLY,CONTRACTED",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338835,
+							"tariffRateId": 18366640,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0001,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": True,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366641,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 12,
+					"rateGroupName": "Competitive Transition Assessment",
+					"rateName": "Energy Charge - Off-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2489,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "Off-Peak_EST",
+						"calendarId": 146,
+						"isDynamic": False,
+						"season": None,
+						"touType": "OFF_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3037,
+								"touId": 2489,
+								"fromDayOfWeek": 0,
+								"fromHour": 20,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 12,
+								"toMinute": 0,
+								"calendarId": None
+							},
+							{
+								"touPeriodId": 3038,
+								"touId": 2489,
+								"fromDayOfWeek": 5,
+								"fromHour": 0,
+								"fromMinute": 0,
+								"toDayOfWeek": 6,
+								"toHour": 0,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338836,
+							"tariffRateId": 18366641,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366642,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 13,
+					"rateGroupName": "Conservation Charge",
+					"rateName": "Conservation Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338837,
+							"tariffRateId": 18366642,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.003,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366643,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 14,
+					"rateGroupName": "Generation Service Charge",
+					"rateName": "Energy Off-Peak Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2489,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "Off-Peak_EST",
+						"calendarId": 146,
+						"isDynamic": False,
+						"season": None,
+						"touType": "OFF_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3037,
+								"touId": 2489,
+								"fromDayOfWeek": 0,
+								"fromHour": 20,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 12,
+								"toMinute": 0,
+								"calendarId": None
+							},
+							{
+								"touPeriodId": 3038,
+								"touId": 2489,
+								"fromDayOfWeek": 5,
+								"fromHour": 0,
+								"fromMinute": 0,
+								"toDayOfWeek": 6,
+								"toHour": 0,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "SUPPLY,CONTRACTED",
+					"chargePeriod": "MONTHLY",
+					"variableRateKey": "generationRateSC27OffPeak",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338838,
+							"tariffRateId": 18366643,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.09922,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366644,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 15,
+					"rateGroupName": "Conservation Adjustment Mechanism",
+					"rateName": "Conservation Adjustment Mechanism",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338839,
+							"tariffRateId": 18366644,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.003,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366645,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 16,
+					"rateGroupName": "System Benefits Charge",
+					"rateName": "System Benefits Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"variableRateKey": "systemsBenefitsChargeR18R27R30",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338840,
+							"tariffRateId": 18366645,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.00054,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366646,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 17,
+					"rateGroupName": "Distribution Adj Charge",
+					"rateName": "Distribution Adj Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"variableRateKey": "distributionAdjCharge2250",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338841,
+							"tariffRateId": 18366646,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366647,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 18,
+					"rateGroupName": "Transmission Service Charge",
+					"rateName": "Energy Charge On-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2488,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "On-Peak_EST",
+						"calendarId": None,
+						"isDynamic": False,
+						"season": None,
+						"touType": "ON_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3036,
+								"touId": 2488,
+								"fromDayOfWeek": 0,
+								"fromHour": 12,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 20,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "TRANSMISSION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338842,
+							"tariffRateId": 18366647,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.02555,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366648,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 19,
+					"rateGroupName": "Facilities Ownership Credit",
+					"rateName": "Facilities Ownership Credit",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "DEMAND_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"quantityKey": "billingDemand2250",
+					"applicabilityKey": "facilitiesOwnership",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338843,
+							"tariffRateId": 18366648,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"applicabilityValue": "true",
+							"rateAmount": 0.2,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": True,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366649,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 20,
+					"rateGroupName": "Distribution Service Charge",
+					"rateName": "Energy Charge - On-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2488,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "On-Peak_EST",
+						"calendarId": None,
+						"isDynamic": False,
+						"season": None,
+						"touType": "ON_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3036,
+								"touId": 2488,
+								"fromDayOfWeek": 0,
+								"fromHour": 12,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 20,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338844,
+							"tariffRateId": 18366649,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366650,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 21,
+					"rateGroupName": "Competitive Transition Assessment",
+					"rateName": "Energy Charge - On-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2488,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "On-Peak_EST",
+						"calendarId": None,
+						"isDynamic": False,
+						"season": None,
+						"touType": "ON_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3036,
+								"touId": 2488,
+								"fromDayOfWeek": 0,
+								"fromHour": 12,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 20,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338845,
+							"tariffRateId": 18366650,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366651,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 22,
+					"rateGroupName": "Transmission Service Charge",
+					"rateName": "Energy Charge Off-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2489,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "Off-Peak_EST",
+						"calendarId": 146,
+						"isDynamic": False,
+						"season": None,
+						"touType": "OFF_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3037,
+								"touId": 2489,
+								"fromDayOfWeek": 0,
+								"fromHour": 20,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 12,
+								"toMinute": 0,
+								"calendarId": None
+							},
+							{
+								"touPeriodId": 3038,
+								"touId": 2489,
+								"fromDayOfWeek": 5,
+								"fromHour": 0,
+								"fromMinute": 0,
+								"toDayOfWeek": 6,
+								"toHour": 0,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "TRANSMISSION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338846,
+							"tariffRateId": 18366651,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.00571,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366652,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 23,
+					"rateGroupName": "Delivery Charge - Federally Mandated Congestion Charge",
+					"rateName": "Energy Charge - On-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2488,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "On-Peak_EST",
+						"calendarId": None,
+						"isDynamic": False,
+						"season": None,
+						"touType": "ON_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3036,
+								"touId": 2488,
+								"fromDayOfWeek": 0,
+								"fromHour": 12,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 20,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338847,
+							"tariffRateId": 18366652,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.01925,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366653,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 24,
+					"rateGroupName": "Generation Service Charge",
+					"rateName": "Energy Charge On-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2488,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "On-Peak_EST",
+						"calendarId": None,
+						"isDynamic": False,
+						"season": None,
+						"touType": "ON_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3036,
+								"touId": 2488,
+								"fromDayOfWeek": 0,
+								"fromHour": 12,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 20,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "SUPPLY,CONTRACTED",
+					"chargePeriod": "MONTHLY",
+					"variableRateKey": "generationRateSC27Peak",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338848,
+							"tariffRateId": 18366653,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.12922,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366654,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 25,
+					"rateGroupName": "Distribution Service Charge",
+					"rateName": "Energy Charge - Off-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2489,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "Off-Peak_EST",
+						"calendarId": 146,
+						"isDynamic": False,
+						"season": None,
+						"touType": "OFF_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3037,
+								"touId": 2489,
+								"fromDayOfWeek": 0,
+								"fromHour": 20,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 12,
+								"toMinute": 0,
+								"calendarId": None
+							},
+							{
+								"touPeriodId": 3038,
+								"touId": 2489,
+								"fromDayOfWeek": 5,
+								"fromHour": 0,
+								"fromMinute": 0,
+								"toDayOfWeek": 6,
+								"toHour": 0,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338849,
+							"tariffRateId": 18366654,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366655,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 26,
+					"rateGroupName": "Delivery Charge - Federally Mandated Congestion Charge",
+					"rateName": "Energy Charge - Off-Peak",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"timeOfUse": {
+						"touId": 2489,
+						"touGroupId": 2,
+						"lseId": 2250,
+						"touName": "Off-Peak_EST",
+						"calendarId": 146,
+						"isDynamic": False,
+						"season": None,
+						"touType": "OFF_PEAK",
+						"touPeriods": [
+							{
+								"touPeriodId": 3037,
+								"touId": 2489,
+								"fromDayOfWeek": 0,
+								"fromHour": 20,
+								"fromMinute": 0,
+								"toDayOfWeek": 4,
+								"toHour": 12,
+								"toMinute": 0,
+								"calendarId": None
+							},
+							{
+								"touPeriodId": 3038,
+								"touId": 2489,
+								"fromDayOfWeek": 5,
+								"fromHour": 0,
+								"fromMinute": 0,
+								"toDayOfWeek": 6,
+								"toHour": 0,
+								"toMinute": 0,
+								"calendarId": None
+							}
+						]
+					},
+					"chargeType": "CONSUMPTION_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338850,
+							"tariffRateId": 18366655,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.00429,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366656,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 27,
+					"rateGroupName": "Competitive Transition Assessment",
+					"rateName": "Demand Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "DEMAND_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"quantityKey": "billingDemand2250",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338851,
+							"tariffRateId": 18366656,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": True,
+							"demandUpperLimit": 2.0,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						},
+						{
+							"tariffRateBandId": 12338852,
+							"tariffRateId": 18366656,
+							"rateSequenceNumber": 2,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": True,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.18,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": True,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366657,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 28,
+					"rateGroupName": "Distribution Service Charge",
+					"rateName": "Demand Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "DEMAND_BASED",
+					"chargeClass": "DISTRIBUTION",
+					"chargePeriod": "MONTHLY",
+					"quantityKey": "billingDemand2250",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338853,
+							"tariffRateId": 18366657,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": True,
+							"demandUpperLimit": 2.0,
+							"hasPropertyLimit": False,
+							"rateAmount": 0.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						},
+						{
+							"tariffRateBandId": 12338854,
+							"tariffRateId": 18366657,
+							"rateSequenceNumber": 2,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": True,
+							"hasPropertyLimit": False,
+							"rateAmount": 13.98,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				},
+				{
+					"tariffRateId": 18366658,
+					"tariffId": 3331357,
+					"tariffSequenceNumber": 29,
+					"rateGroupName": "Minimum Charge",
+					"rateName": "Minimum Charge",
+					"fromDateTime": "2019-05-01T00:00:00-04:00",
+					"toDateTime": None,
+					"chargeType": "MINIMUM",
+					"chargePeriod": "MONTHLY",
+					"rateBands": [
+						{
+							"tariffRateBandId": 12338855,
+							"tariffRateId": 18366658,
+							"rateSequenceNumber": 1,
+							"hasConsumptionLimit": False,
+							"hasDemandLimit": False,
+							"hasPropertyLimit": False,
+							"rateAmount": 44.0,
+							"rateUnit": "COST_PER_UNIT",
+							"isCredit": False,
+							"prevUpperLimit": None
+						}
+					]
+				}
+			]
+		}
+	]
+}

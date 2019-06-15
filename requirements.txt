@@ -1,0 +1,2 @@
+marshmallow==2.19.3
+PyMySQL==0.9.3
