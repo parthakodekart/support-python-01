@@ -20,7 +20,7 @@ class SyncDB:
         """
         initializes the db connection
         """
-        self.DB_HOST = kwargs.get('DB_HOST', os.getenv('DB_HOST', None))
+        self.DB_HOST = kwargs.get(' DB_HOST', os.getenv('DB_HOST', None))
         self.DB_NAME = kwargs.get('DB_NAME', os.getenv('DB_NAME', None))
         self.DB_USER = kwargs.get('DB_USER', os.getenv('DB_USER', None))
         self.DB_PASSWORD = kwargs.get(
@@ -152,11 +152,7 @@ class SyncDB:
         Will compute the LimitStart column
         """
         has_demand_limit = rate['rateBands'][0]['hasDemandLimit']
-        if not has_demand_limit:
-            limit_start = 0
-        else:
-            limit_start = rate['rateBands'][0]['demandUpperLimit']
-        return limit_start
+        return 0 if not has_demand_limit else rate['rateBands'][0]['demandUpperLimit']
 
     def compute_LimitEnd(self, rate=None):
         """
@@ -252,7 +248,7 @@ class SyncDB:
         """
         columns = ', '.join(self.NXRATECHARGES[0].keys())
         values = [tuple(payload.values()) for payload in self.NXRATECHARGES]
-        query = "INSERT INTO {tablename} ({columns}) VALUES ($d, $d, $s, $s, $s, $s, $s, $s, $s, $s, $s, $s, $s, $s, $s);" .format(
+        query = "INSERT INTO {tablename} ({columns}) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %d);" .format(
             tablename='NXRATECHARGES',
             columns=columns
         )
