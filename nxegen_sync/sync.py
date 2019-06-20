@@ -272,9 +272,9 @@ class SyncDB:
 
 
 sync = SyncDB(
-    DB_HOST='aei-az-sqldev.nxe.nxegen.com',
-    DB_NAME='rtisdevel',
-    DB_USER='nordic067',
-    DB_PASSWORD='RTIS_Development'
+    DB_HOST='<host>',
+    DB_NAME='<usenrame>',
+    DB_USER='<password>',
+    DB_PASSWORD='<db_name>'
 )
 sync.run()
