@@ -22,8 +22,8 @@ if TariffChargeType == None:
     continue
 date = datetime.today()
 
-db = pymssql.connect('aei-az-sqldev.nxe.nxegen.com',
-                     'rtisdevel', 'nordic067', 'RTIS_Development')
+db = pymssql.connect('<host>',
+                     '<username>', '<password>', '<db_name>')
 # , database= 'RTIS_Development'
 mydb = db.cursor()
 
